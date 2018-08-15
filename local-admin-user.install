@@ -1,0 +1,17 @@
+user=local-admin
+
+pre_install () {
+  id -u $user || useradd -m $user
+  gpasswd -a $user wheel
+}
+
+post_install () {
+  chown -R $user:$user /home/$user
+  R=$(head -c12 /dev/urandom|base64)
+  echo -e "$R\n$R\n" | passwd $user
+  echo "New $user password is: $R"
+}
+
+post_remove () {
+  id -u $user && userdel --remove $user
+}
