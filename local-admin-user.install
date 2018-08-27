@@ -7,9 +7,9 @@ pre_install () {
 
 post_install () {
   chown -R $user:$user /home/$user
-  R=$(head -c12 /dev/urandom|base64)
-  echo -e "$R\n$R\n" | passwd $user
-  echo "New $user password is: $R"
+  local password=$(head -c9 /dev/urandom|base64|tr 'O01lzZyY+/' 'abcdefghij')
+  echo -e "${password}\n${password}\n" | passwd "$user"
+  echo "New ${user} password is: ${password}"
 }
 
 post_remove () {
