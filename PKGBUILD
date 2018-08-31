@@ -3,7 +3,7 @@
 pkgname='local-admin-user'
 pkgver=1.1
 pkgrel=1
-pkgdesc='Creates a user called "local-admin", installs some dotfiles and set a random password'
+pkgdesc='Creates a user called "local-admin", installs some dotfiles and sets a random password'
 packager='Jan Boelsche'
 arch=('any')
 license=('GPL')
@@ -23,5 +23,3 @@ package() {
 	install -m 700 -d "${home}"
 	install -m 644 -t "${home}" .tmux.conf .vimrc
 }
-
-	
